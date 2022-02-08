@@ -4,7 +4,7 @@ const fs = require('fs/promises');
 
 module.exports = class FileStore {
   constructor({type, dir}) {
-    this.filename = path.join(__dirname, dir, `${type}.json`);
+    this.filename = path.join(dir, `${type}.json`);
   }
 
   async parse(data) {
