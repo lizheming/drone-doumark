@@ -1,17 +1,26 @@
 {
   "name": "drone-doumark",
+  "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "豆瓣观影/阅读/音乐记录同步",
+  "main": "src/index.js",
+  "bin": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pkg ./ --out-path=dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lizheming/drone-doumark.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "douban",
+    "movie",
+    "book",
+    "music",
+    "drone",
+    "plugin"
+  ],
+  "author": "lizheming<i@imnerd.org>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lizheming/drone-doumark/issues"
@@ -20,5 +29,11 @@
   "dependencies": {
     "dayjs": "^1.10.7",
     "undici": "^4.13.0"
+  },
+  "pkg": {
+    "targets": [
+      "node16-alpine-x64",
+      "node16-macos-x64"
+    ]
   }
 }
