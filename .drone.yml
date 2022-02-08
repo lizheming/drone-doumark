@@ -1,0 +1,15 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+
+- name: publish
+  image: plugins/docker
+  settings:
+    repo: lizheming/drone-doumark
+    auto_tag: true
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
