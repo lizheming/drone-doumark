@@ -1,5 +1,5 @@
 {
-  "name": "drone-doumark",
+  "name": "doumark",
   "private": true,
   "version": "1.0.0",
   "description": "豆瓣观影/阅读/音乐记录同步",
@@ -32,8 +32,10 @@
   },
   "pkg": {
     "targets": [
-      "node16-alpine-x64",
-      "node16-macos-x64"
+      "node16-alpine-x64"
     ]
+  },
+  "devDependencies": {
+    "pkg": "^5.5.2"
   }
 }
