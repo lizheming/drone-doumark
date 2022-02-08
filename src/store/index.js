@@ -1,2 +1,2 @@
-exports.file = require('./file');
+exports.csv = require('./csv');
 exports.json = require('./json');

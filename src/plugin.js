@@ -24,9 +24,8 @@ module.exports = {
     }
     return fn => fn(ret);
   },
-  async exec({ id, type, dir }) {
-    const storeType = dir ? 'file' : '';
-    const Store = Stores[storeType];
+  async exec({ id, type, format, dir }) {
+    const Store = Stores[format];
     if(!Store) {
       throw new Error(`当前选择的存储类型为 ${storeType}，它尚未被支持`);
     }
