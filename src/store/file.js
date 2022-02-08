@@ -15,8 +15,8 @@ module.exports = class FileStore {
     return JSON.stringify(data, null, '\t');
   }
 
-  async format(item) {
-    return item
+  format(item) {
+    return item;
   }
 
   async get() {

@@ -41,6 +41,9 @@ module.exports = {
     let offset = 0;
     do {
       const { interests } = await fetchDouban(id, type, offset);
+      if (!Array.isArray(interests) || !interests.length) {
+        break;
+      }
       offset += interests.length;
   
       const subjects = interests.filter(({create_time}) => {
@@ -58,6 +61,6 @@ module.exports = {
     } while(true);
   
     // 合并存储
-    await store.set(appendSubjects.format(store.format.bind(store)).concat(local));
+    await store.set(appendSubjects.map(store.format.bind(store)).concat(local));
   }
 };
