@@ -18,5 +18,9 @@ configParser({
     usage: '记录存储目录',
     env: 'PLUGIN_DIR,DOUBAN_DIR',
     def: './'
+  },
+  notion_token: {
+    usage: 'Notion 机器人 Token',
+    env: 'PLUGIN_NOTION_TOKEN,DOUBAN_NOTION_TOKEN,NOTION_TOKEN',
   }
 })(exec);

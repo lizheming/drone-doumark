@@ -24,12 +24,12 @@ module.exports = {
     }
     return fn => fn(ret);
   },
-  async exec({ id, type, format, dir }) {
+  async exec({ id, type, format, dir, notion_token }) {
     const Store = Stores[format];
     if(!Store) {
       throw new Error(`当前选择的存储类型为 ${storeType}，它尚未被支持`);
     }
-    const store = new Store({ type, dir });
+    const store = new Store({ type, dir, notion_token });
   
     // 读取之前的 mark 记录
     const local = await store.get();
