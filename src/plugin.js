@@ -60,6 +60,6 @@ module.exports = {
     } while(true);
   
     // 合并存储
-    await store.set(appendSubjects.map(store.format.bind(store)).concat(local));
+    await store.set(appendSubjects.map(store.format.bind(store)));
   }
 };

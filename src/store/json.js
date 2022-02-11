@@ -22,11 +22,12 @@ module.exports = class FileStore {
   async get() {
     const isExist = await fs.access(this.filename, constants.F_OK).then(() => true, () => false);
     const text = isExist ? (await fs.readFile(this.filename, 'utf-8')) : '[]';
-    return this.parse(text);
+    this._data = await this.parse(text);
+    return this._data;
   }
 
   async set(data) {
-    const text = await this.stringify(data);
+    const text = await this.stringify(data.concat(this._data));
     return fs.writeFile(this.filename, text, 'utf-8');
   }
 }

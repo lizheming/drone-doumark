@@ -7,9 +7,9 @@ const PROPERTIES = {
   rating: 'number',
   star: 'number',
   url: 'url',
-  poster: 'file',
-  star_time: 'date',
-  pubdate: 'date',
+  poster: 'files',
+  star_time: 'rich_text',
+  pubdate: 'rich_text',
   id: 'number',
   genres: 'multi_select'
 };
@@ -18,12 +18,9 @@ const FORMATS = {
   title(val) {
     return [
       {
-        "type": "text",
         "text": {
-          "content": val,
-          "link": null
+          "content": val
         },
-        "plain_text": val,
       }
     ]
   },
@@ -36,13 +33,12 @@ const FORMATS = {
   url(val) {
     return val;
   },
-  file(val) {
+  files(val) {
     if(!Array.isArray(val)) {
       val = [val];
     }
     return val.map(url => ({
       name: url,
-      title: url,
       type: 'external',
       external: { url }
     }));
@@ -51,8 +47,11 @@ const FORMATS = {
     return {
       "start": val,
       "end": null,
-      "time_zone": 8
+      "time_zone": 'Asia/Shanghai'
     };
+  },
+  select(name) {
+    return { name };
   },
   multi_select(val) {
     return val.map(name => ({ name }));
@@ -68,7 +67,7 @@ module.exports = class NotionStore {
 
   async parse({ results }) {
     return results.map(({properties}) => ({
-      star_time: properties.star_time.date.start
+      star_time: new Date(properties.star_time.rich_text[0].text.content).getTime()
     }));
   }
 
@@ -80,7 +79,6 @@ module.exports = class NotionStore {
       }
 
       item[i] = {
-        type: PROPERTIES[i],
         [PROPERTIES[i]]: FORMATS[PROPERTIES[i]](data[i])
       };
     }
