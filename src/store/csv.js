@@ -43,7 +43,7 @@ module.exports = class FileStore {
       pubdate: subject.pubdate[0],
       url: subject.url,
       rating: subject.rating.value,
-      genres: subject.genres.join(),
+      genres: Array.isArray(subject.genres) ? subject.genres.join() : undefined,
       star: subject.rating.star_count,
       star_time: create_time,
     };
