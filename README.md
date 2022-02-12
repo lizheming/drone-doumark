@@ -1,26 +1,47 @@
 ![](assets/douban.png)
 ## drone-doumark
 
-豆瓣观影/阅读/音乐记录同步插件
-## 简介
+Drone plugin for Douban movie/book/music marked data sync automatically.
+## Configuration
 
-本插件支持定时将你的豆瓣观影、阅读、音乐记录同步下载到本地
-## 配置
+- `PLUGIN_ID`: Douban ID
+- `DOUBAN_ID`: Same as `PLUGIN_ID`
+- `PLUGIN_TYPE`: Douban data Type, enum value: movie, book, music, default `movie`
+- `DOUBAN_TYPE`: Same as `PLUGIN_TYPE`
+- `PLUGIN_FORMAT`: Douban data store format, enum value：csv, json, notion, default `csv`
+- `DOUBAN_FORMAT`: Same as `PLUGIN_FORMAT`
+- `PLUGIN_DIR`: Target where douban data sync to. It's a file path for `csv` and `json` format, and a notion database id for `notion` format. 
+- `DOUBAN_DIR`: Same as `PLUGIN_DIR`
+- `PLUGIN_NOTION_TOKEN`: Notion Integration Token
+- `DOUBAN_NOTION_TOKEN`: Same as `PLUGIN_NOTION_TOKEN`
+- `NOTION_TOKEN`: Same as `PLUGIN_NOTION_TOKEN`
+## How to use
 
-- `PLUGIN_ID`: 豆瓣 ID
-- `DOUBAN_ID`: 同 `PLUGIN_ID`
-- `PLUGIN_TYPE`: 数据类型，可选值：movie, book, music，默认为 `movie`
-- `DOUBAN_TYPE`: 同 `PLUGIN_TYPE`
-- `PLUGIN_FORMAT`: 存储格式，可选值：csv, json，默认为 `csv`
-- `DOUBAN_FORMAT`: 同 `PLUGIN_FORMAT`
-- `PLUGIN_DIR`: 记录存储目录
-- `DOUBAN_DIR`: 同 `PLUGIN_DIR`
-## 如何使用
+### Sync to CSV file
 
 ```
 docker run --rm \
   -e PLUGIN_ID=lizheming
-  -e PLUGIN_TYPE=douban
+  -e PLUGIN_TYPE=movie
+  -e PLUGIN_FORMAT=csv
   -e PLUGIN_DIR=./data/douban
-  lizheming/drone-wechat
+  lizheming/drone-doumark
+```
+
+### Sync to Notion
+
+1. Create a Notion Integration at [My Integrations - Notion](https://www.notion.so/my-integrations). And here you can get `NOTION_TOKEN`.
+    - Associated workspace: You should select workspace which you should store.
+    - Capabilities: Both of `Read`, `Update` and `Insert` content abilities shoud checked.
+2. Duplicate database by click <kbd>Duplicate</kbd> at the top right postion of <[Movie](https://lizheming.notion.site/d8a363df3ca84ca89ef52208ad874e3b) | [Book](https://lizheming.notion.site/488c17fd89fb424591f68f7cfb029020) | [Music](https://lizheming.notion.site/d80ca60213c54ab99c4376caec0be9d7)> page.
+3. Share database to your Integration by inviting it with <kbd>Share</kbd> - <kbd>Invite</kbd> at the top right postion. And you can get database id, the first random string from url.
+
+```
+docker run --rm \
+  -e PLUGIN_ID=lizheming
+  -e PLUGIN_TYPE=movie
+  -e PLUGIN_FORMAT=notion
+  -e PLUGIN_NOTION_TOKEN=xxxxxx
+  -e PLUGIN_DIR=xxxxxx
+  lizheming/drone-doumark
 ```
