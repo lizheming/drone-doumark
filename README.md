@@ -1,6 +1,8 @@
 ![](assets/douban.png)
 ## drone-doumark
 
+[![Build Status](https://cloud.drone.io/api/badges/lizheming/drone-doumark/status.svg)](https://cloud.drone.io/lizheming/drone-doumark)
+
 Drone plugin for Douban movie/book/music marked data sync automatically.
 ## Configuration
 
