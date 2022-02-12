@@ -42,7 +42,7 @@ module.exports = class FileStore {
       pubdate: subject.pubdate[0],
       url: subject.url,
       rating: subject.rating.value,
-      genres: JSON.stringify(subject.genres),
+      genres: subject.genres.join(),
       star: subject.rating.star_count,
       star_time: create_time,
     };

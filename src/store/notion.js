@@ -1,4 +1,5 @@
 const { Client } = require("@notionhq/client");
+const { sleep } = require('../helper');
 
 const PROPERTIES = {
   title: 'title',
@@ -38,7 +39,7 @@ const FORMATS = {
       val = [val];
     }
     return val.map(url => ({
-      name: url,
+      name: url.split('/').pop(),
       type: 'external',
       external: { url }
     }));
@@ -135,6 +136,7 @@ module.exports = class NotionStore {
         },
         properties,
       });
+      await sleep(0.5);
     }
   }
 }

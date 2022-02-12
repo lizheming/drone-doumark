@@ -1,11 +1,11 @@
 const dayjs = require('dayjs');
 const process = require('process');
 const Stores = require('./store');
+const { sleep } = require('./helper');
 const fetchDouban = require('./douban');
-var customParseFormat = require('dayjs/plugin/customParseFormat');
+const customParseFormat = require('dayjs/plugin/customParseFormat');
 dayjs.extend(customParseFormat);
 
-const sleep = second => new Promise(resolve => setTimeout(resolve, second * 1000));
 module.exports = {
   configParser(configs) {
     const ret = {};
