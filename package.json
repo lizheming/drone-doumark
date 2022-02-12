@@ -30,6 +30,7 @@
     "@notionhq/client": "^0.4.13",
     "dayjs": "^1.10.7",
     "fast-csv": "^4.3.6",
+    "fs-extra": "^10.0.0",
     "undici": "^4.13.0"
   },
   "pkg": {

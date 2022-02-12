@@ -1,6 +1,7 @@
 const path = require('path');
 const { constants } = require('fs');
 const fs = require('fs/promises');
+const fse = require('fs-extra');
 const { parseString, writeToString } = require('fast-csv');
 module.exports = class FileStore {
   constructor({type, dir}) {
@@ -63,6 +64,7 @@ module.exports = class FileStore {
 
   async set(data) {
     const text = await this.stringify(data.concat(this._data));
+    await fse.ensureFile(this.filename);
     return fs.writeFile(this.filename, text, 'utf-8');
   }
 }
