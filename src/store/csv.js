@@ -60,10 +60,10 @@ module.exports = class FileStore {
     const isExist = await fs.access(this.filename, constants.F_OK).then(() => true, () => false);
     const text = isExist ? (await fs.readFile(this.filename, 'utf-8')) : '[]';
     this._data = await this.parse(text);
-    return this._data.map(item => {
-      item.star_time = dayjs(item.star_time, 'YYYY-MM-DD HH:mm:ss').valueOf();
-      return item;
-    });
+    return this._data.map(item => ({
+      ...item,
+      star_time: dayjs(item.star_time, 'YYYY-MM-DD HH:mm:ss').valueOf()
+    }));
   }
 
   async set(data) {
