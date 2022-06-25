@@ -3,12 +3,18 @@ type: docker
 name: default
 
 steps:
+- name: build
+  image: node:alpine
+  commands:
+  - npm ci
+  - npm run build
+  - version=$(node -e "console.log(require('./package.json').version)")
+  - echo -n "$version,latest" > .tags
 
 - name: publish
   image: plugins/docker
   settings:
     repo: lizheming/drone-doumark
-    auto_tag: true
     username:
       from_secret: docker_username
     password:
