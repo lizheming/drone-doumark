@@ -7,12 +7,14 @@ const PROPERTIES = {
   intro: 'rich_text',
   rating: 'number',
   star: 'number',
+  tags: 'multi_select',
+  comment: 'rich_text',
   url: 'url',
   poster: 'files',
   star_time: 'rich_text',
   pubdate: 'rich_text',
   id: 'number',
-  genres: 'multi_select'
+  genres: 'multi_select',
 };
 
 const FORMATS = {
@@ -102,6 +104,8 @@ module.exports = class NotionStore {
       rating: subject.rating.value,
       genres: subject.genres,
       star: subject.rating.star_count,
+      tags: subject.tags,
+      comment: subject.comment,
       star_time: create_time,
     };
 
