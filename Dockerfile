@@ -1,5 +1,5 @@
 FROM alpine
 
-COPY ./dist/doumark /bin/doumark
+COPY ./dist/drone-doumark /bin/doumark
 
 ENTRYPOINT [ "doumark" ]
