@@ -34,6 +34,9 @@ module.exports = class FileStore {
     id,
     create_time,
     subject,
+    rating,
+    comment,
+    tags,
   }) {
     const item = {
       id,
@@ -45,9 +48,9 @@ module.exports = class FileStore {
       url: subject.url,
       rating: subject.rating.value,
       genres: Array.isArray(subject.genres) ? subject.genres.join() : undefined,
-      star: subject.rating.star_count,
-      comment: subject.comment,
-      tags: Array.isArray(subject.tags) ? subject.tags.join() : undefined,
+      star: rating.star_count,
+      comment: comment,
+      tags: Array.isArray(tags) ? tags.join() : undefined,
       star_time: create_time,
     };
 
