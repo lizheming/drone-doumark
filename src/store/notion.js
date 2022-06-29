@@ -93,6 +93,9 @@ module.exports = class NotionStore {
     id,
     create_time,
     subject,
+    rating,
+    comment,
+    tags,
   }) {
     const item = {
       id,
@@ -104,8 +107,7 @@ module.exports = class NotionStore {
       url: subject.url,
       rating: subject.rating.value,
       genres: subject.genres,
-      star: subject.rating.star_count,
-      ustar: rating.star_count,
+      star: rating.star_count,
       tags: tags,
       comment: comment,
       star_time: create_time,
