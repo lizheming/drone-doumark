@@ -105,7 +105,7 @@ module.exports = class NotionStore {
       poster: subject.cover_url,
       pubdate: subject.pubdate[0],
       url: subject.url,
-      rating: subject.rating.value,
+      rating: subject?.rating?.value,
       genres: subject.genres,
       star: rating?.star_count,
       tags: tags,

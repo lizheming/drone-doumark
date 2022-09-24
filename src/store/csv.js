@@ -46,7 +46,7 @@ module.exports = class FileStore {
       poster: subject.cover_url,
       pubdate: subject.pubdate[0],
       url: subject.url,
-      rating: subject.rating.value,
+      rating: subject?.rating?.value,
       genres: Array.isArray(subject.genres) ? subject.genres.join() : undefined,
       star: rating?.star_count,
       comment: comment,
