@@ -6,6 +6,22 @@ const fse = require('fs-extra');
 const { parseString, writeToString } = require('fast-csv');
 const customParseFormat = require('dayjs/plugin/customParseFormat');
 dayjs.extend(customParseFormat);
+
+const HEADERS = [
+  [ 'id', ({ id }) => id, ],
+  [ 'title', ({ subject: { title }}) => title, ],
+  [ 'intro', ({ subject: { intro }}) => intro, ],
+  [ 'poster', ({ subject: { cover_url }}) => cover_url, ],
+  [ 'pubdate', ({ subject: { pubdate }}) => pubdate[0], ],
+  [ 'url', ({ subject: { url }}) => url, ],
+  [ 'rating', ({ subject }) => subject?.rating?.value, ],
+  [ 'genres', ({ subject }) => Array.isArray(subject.genres) ? subject.genres.join() : undefined, ],
+  [ 'star', ({ rating }) => rating?.star_count, ],
+  [ 'comment', ({ comment }) => comment, ],
+  [ 'tags', ({ tags }) => Array.isArray(tags) ? tags.join() : undefined],
+  [ 'star_time',  ({ create_time }) => create_time, ],
+];
+
 module.exports = class FileStore {
   constructor({type, dir}) {
     this.filename = path.join(dir, `${type}.csv`);
@@ -25,40 +41,20 @@ module.exports = class FileStore {
 
   async stringify(data) {
     return writeToString(data, {
-      headers: true,
+      headers: HEADERS.map(([key]) => key),
       writeHeaders: true,
     });
   }
 
-  format({
-    id,
-    create_time,
-    subject,
-    rating,
-    comment,
-    tags,
-  }) {
-    const item = {
-      id,
-      title: subject.title,
-      subtitle: subject.card_subtitle,
-      intro: subject.intro,
-      poster: subject.cover_url,
-      pubdate: subject.pubdate[0],
-      url: subject.url,
-      rating: subject?.rating?.value,
-      genres: Array.isArray(subject.genres) ? subject.genres.join() : undefined,
-      star: rating?.star_count,
-      comment: comment,
-      tags: Array.isArray(tags) ? tags.join() : undefined,
-      star_time: create_time,
-    };
-
-    for(const i in item) {
-      if(item[i] === undefined) delete item[i];
+  format(item) {
+    const row = {};
+    for (const [ key, fn ] of HEADERS) {
+      const ret = fn(item);
+      if (ret !== undefined) {
+        row[key] = ret;
+      }
     }
-
-    return item;
+    return row;
   }
 
   async get() {
