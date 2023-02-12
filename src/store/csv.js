@@ -20,6 +20,7 @@ const HEADERS = [
   [ 'comment', ({ comment }) => comment, ],
   [ 'tags', ({ tags }) => Array.isArray(tags) ? tags.join() : undefined],
   [ 'star_time',  ({ create_time }) => create_time, ],
+  [ 'card', ({ subject }) => subject?.card_subtitle, ],
 ];
 
 module.exports = class FileStore {
