@@ -10,6 +10,8 @@ Drone plugin for Douban movie/book/music marked data sync automatically.
 - `DOUBAN_ID`: Same as `PLUGIN_ID`
 - `PLUGIN_TYPE`: Douban data Type, enum value: movie, book, music, default `movie`
 - `DOUBAN_TYPE`: Same as `PLUGIN_TYPE`
+- `PLUGIN_STATUS`: Douban data status, enum value: mark, doing, done, default `done`
+- `DOUBAN_STATUS`: Same as `PLUGIN_STATUS`
 - `PLUGIN_FORMAT`: Douban data store format, enum value：csv, json, notion, default `csv`
 - `DOUBAN_FORMAT`: Same as `PLUGIN_FORMAT`
 - `PLUGIN_DIR`: Target where douban data sync to. It's a file path for `csv` and `json` format, and a notion database id for `notion` format. 
