@@ -9,6 +9,11 @@ configParser({
     env: 'PLUGIN_TYPE,DOUBAN_TYPE,INPUT_TYPE',
     def: 'movie'
   },
+  status: {
+    usage: '数据状态，可选值：mark, doing, done',
+    env: 'PLUGIN_STATUS,DOUBAN_STATUS,INPUT_STATUS',
+    def: 'done'
+  },
   format: {
     usage: '存储数据格式，可选值：csv, json',
     env: 'PLUGIN_FORMAT,DOUBAN_FORMAT,INPUT_FORMAT',

@@ -24,7 +24,7 @@ module.exports = {
     }
     return fn => fn(ret);
   },
-  async exec({ id, type, format, dir, notion_token }) {
+  async exec({ id, type, status, format, dir, notion_token }) {
     const Store = Stores[format];
     if(!Store) {
       throw new Error(`当前选择的存储类型为 ${storeType}，它尚未被支持`);
@@ -39,7 +39,7 @@ module.exports = {
     const appendSubjects = [];
     let offset = 0;
     do {
-      const { interests } = await fetchDouban(id, type, offset);
+      const { interests } = await fetchDouban({user: id, type, status, offset});
       if (!Array.isArray(interests) || !interests.length) {
         break;
       }

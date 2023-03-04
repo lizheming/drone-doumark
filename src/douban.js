@@ -5,11 +5,11 @@ const {
   AUTH_TOKEN,
 } = process.env;
 
-module.exports = async function fetchSubjects(user, type, offset) {
+module.exports = async function fetchSubjects({user, type, status, offset }) {
   const url = `https://${DOUBAN_API_HOST}/api/v2/user/${user}/interests`;
   const params = new URLSearchParams({
     type,
-    status: 'done',
+    status: status || 'done',
     count: 50,
     start: offset,
     apiKey: DOUBAN_API_KEY
