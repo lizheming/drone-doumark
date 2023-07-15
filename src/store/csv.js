@@ -8,10 +8,10 @@ const customParseFormat = require('dayjs/plugin/customParseFormat');
 dayjs.extend(customParseFormat);
 
 const HEADERS = [
-  [ 'id', ({ id }) => id, ],
+  [ 'id', ({ subject: { id } }) => id, ],
   [ 'title', ({ subject: { title }}) => title, ],
   [ 'intro', ({ subject: { intro }}) => intro, ],
-  [ 'poster', ({ subject: { cover_url }}) => cover_url, ],
+  [ 'poster', ({ subject: { id }}, { type }) => `https://dou.img.lithub.cc/${type}/${id}.jpg`, ],
   [ 'pubdate', ({ subject: { pubdate }}) => pubdate[0], ],
   [ 'url', ({ subject: { url }}) => url, ],
   [ 'rating', ({ subject }) => subject?.rating?.value, ],
@@ -25,6 +25,7 @@ const HEADERS = [
 
 module.exports = class FileStore {
   constructor({type, dir}) {
+    this.type = type;
     this.filename = path.join(dir, `${type}.csv`);
   }
 
@@ -50,7 +51,7 @@ module.exports = class FileStore {
   format(item) {
     const row = {};
     for (const [ key, fn ] of HEADERS) {
-      const ret = fn(item);
+      const ret = fn(item, { type: this.type });
       if (ret !== undefined) {
         row[key] = ret;
       }

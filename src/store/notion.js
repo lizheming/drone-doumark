@@ -62,7 +62,8 @@ const FORMATS = {
   }
 }
 module.exports = class NotionStore {
-  constructor({dir, notion_token}) {
+  constructor({type, dir, notion_token}) {
+    this.type = type;
     this.database_id = dir;
     this.notion = new Client({
       auth: notion_token,
@@ -90,7 +91,6 @@ module.exports = class NotionStore {
   }
 
   format({
-    id,
     create_time,
     subject,
     rating,
@@ -98,11 +98,11 @@ module.exports = class NotionStore {
     tags,
   }) {
     const item = {
-      id,
+      id: subject.id,
       title: subject.title,
       subtitle: subject.card_subtitle,
       intro: subject.intro,
-      poster: subject.cover_url,
+      cover_url: `https://dou.img.lithub.cc/${this.type}/${subject.id}.jpg`,
       pubdate: subject.pubdate[0],
       url: subject.url,
       rating: subject?.rating?.value,

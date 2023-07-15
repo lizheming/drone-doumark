@@ -8,6 +8,7 @@ dayjs.extend(customParseFormat);
 
 module.exports = class FileStore {
   constructor({type, dir}) {
+    this.type = type;
     this.filename = path.join(dir, `${type}.json`);
   }
 
@@ -16,6 +17,14 @@ module.exports = class FileStore {
   }
 
   async stringify(data) {
+    Array.isArray(data) && data.length && data.forEach(item => {
+      if (!item || !item.subject || !item.subject.id) {
+        return;
+      }
+
+      item.subject.cover_url = `https://dou.img.lithub.cc/${this.type}/${item.subject.id}.jpg`;
+    });
+    
     return JSON.stringify(data, null, '\t');
   }
 
