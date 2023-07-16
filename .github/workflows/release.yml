@@ -17,13 +17,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - id: build
+      - id: tag
         run: |
-          npm ci
-          npm run build
           version=$(node -e "console.log(require('./package.json').version)")
-          echo "DEBUG: $version"
-          ls ./dist
           echo "version=$version" >> "$GITHUB_OUTPUT"
     
       - name: Set up QEMU
@@ -45,4 +41,4 @@ jobs:
           push: true
           tags: |
             lizheming/drone-doumark:latest
-            lizheming/drone-doumark:${{ steps.build.outputs.version }}
+            lizheming/drone-doumark:${{ steps.tag.outputs.version }}
