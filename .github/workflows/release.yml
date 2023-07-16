@@ -22,6 +22,8 @@ jobs:
           npm ci
           npm run build
           version=$(node -e "console.log(require('./package.json').version)")
+          echo "DEBUG: $version"
+          ls ./dist
           echo "version=$version" >> "$GITHUB_OUTPUT"
     
       - name: Set up QEMU
