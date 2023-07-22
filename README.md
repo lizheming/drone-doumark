@@ -13,13 +13,16 @@ Drone plugin for Douban movie/book/music marked data sync automatically.
 - `DOUBAN_TYPE`: Same as `PLUGIN_TYPE`
 - `PLUGIN_STATUS`: Douban data status, enum value: mark, doing, done, default `done`
 - `DOUBAN_STATUS`: Same as `PLUGIN_STATUS`
-- `PLUGIN_FORMAT`: Douban data store format, enum value：csv, json, notion, default `csv`
+- `PLUGIN_FORMAT`: Douban data store format, enum value：csv, json, notion, neodb default `csv`
 - `DOUBAN_FORMAT`: Same as `PLUGIN_FORMAT`
 - `PLUGIN_DIR`: Target where douban data sync to. It's a file path for `csv` and `json` format, and a notion database id for `notion` format. 
 - `DOUBAN_DIR`: Same as `PLUGIN_DIR`
 - `PLUGIN_NOTION_TOKEN`: Notion Integration Token
 - `DOUBAN_NOTION_TOKEN`: Same as `PLUGIN_NOTION_TOKEN`
 - `NOTION_TOKEN`: Same as `PLUGIN_NOTION_TOKEN`
+- `PLUGIN_NEODB_TOKEN`: NeoDB Access Token
+- `DOUBAN_NEODB_TOKEN`: Same as `PLUGIN_NEODB_TOKEN`
+- `NEODB_TOKEN`: Same as `PLUGIN_NEODB_TOKEN`
 ## How to use
 
 ### Sync to CSV file
@@ -93,5 +96,40 @@ docker run --rm \
   -e PLUGIN_FORMAT=notion
   -e PLUGIN_NOTION_TOKEN=xxxxxx
   -e PLUGIN_DIR=xxxxxx
+  lizheming/drone-doumark
+```
+
+### Sync to NeoDB
+
+1. Create a NeoDB Access Token at [NeoDB API Developer Console](https://neodb.social/developer/).
+
+
+```yml
+# .drone.yml
+kind: pipeline
+type: docker
+name: default
+
+clone:
+  disable: true
+
+steps:
+- name: douban
+  image: lizheming/drone-doumark
+  settings:
+    id: lizheming
+    type: movie
+    format: neodb
+    neodb_token: xxxxx
+```
+
+RUN with docker directly:
+
+```
+docker run --rm \
+  -e PLUGIN_ID=lizheming
+  -e PLUGIN_TYPE=movie
+  -e PLUGIN_FORMAT=neodb
+  -e PLUGIN_NEODB_TOKEN=xxxxxx
   lizheming/drone-doumark
 ```
