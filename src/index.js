@@ -27,5 +27,9 @@ configParser({
   notion_token: {
     usage: 'Notion 机器人 Token',
     env: 'PLUGIN_NOTION_TOKEN,DOUBAN_NOTION_TOKEN,NOTION_TOKEN,INPUT_NOTION_TOKEN',
+  },
+  neodb_token: {
+    usage: 'NeoDB Token',
+    env: 'PLUGIN_NEODB_TOKEN,DOUBAN_NEODB_TOKEN,NEODB_TOKEN,INPUT_NEODB_TOKEN',
   }
 })(exec);
