@@ -4,12 +4,12 @@
 [![Build Status](https://github.com/lizheming/drone-doumark/actions/workflows/release.yml/badge.svg)](https://github.com/lizheming/drone-doumark/actions/workflows/release.yml)
 <!-- [![Build Status](https://cloud.drone.io/api/badges/lizheming/drone-doumark/status.svg)](https://cloud.drone.io/lizheming/drone-doumark) -->
 
-Drone plugin for Douban movie/book/music marked data sync automatically.
+Drone plugin for Douban movie/book/music/game marked data sync automatically.
 ## Configuration
 
 - `PLUGIN_ID`: Douban ID
 - `DOUBAN_ID`: Same as `PLUGIN_ID`
-- `PLUGIN_TYPE`: Douban data Type, enum value: movie, book, music, default `movie`
+- `PLUGIN_TYPE`: Douban data Type, enum value: movie, book, music, game default `movie`
 - `DOUBAN_TYPE`: Same as `PLUGIN_TYPE`
 - `PLUGIN_STATUS`: Douban data status, enum value: mark, doing, done, default `done`
 - `DOUBAN_STATUS`: Same as `PLUGIN_STATUS`

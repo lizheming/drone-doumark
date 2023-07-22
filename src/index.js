@@ -5,7 +5,7 @@ configParser({
     env: 'PLUGIN_ID,DOUBAN_ID,INPUT_ID'
   },
   type: {
-    usage: '数据类型，可选值：movie, book, music',
+    usage: '数据类型，可选值：movie, book, music, game',
     env: 'PLUGIN_TYPE,DOUBAN_TYPE,INPUT_TYPE',
     def: 'movie'
   },
