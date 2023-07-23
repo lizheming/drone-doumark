@@ -32,7 +32,7 @@ const FORMATS = {
     return this.title(val);
   },
   number(val) {
-    return val;
+    return Number(val);
   },
   url(val) {
     return val;
