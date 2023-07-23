@@ -71,7 +71,9 @@ module.exports = class NotionStore {
   }
 
   async parse({ results }) {
-    return results.map(({properties}) => ({
+    return results.filter(({ properties: { star_time } }) => 
+      star_time && Array.isArray(star_time.rich_text) && star_time.rich_text.length
+    ).map(({properties}) => ({
       star_time: new Date(properties.star_time.rich_text[0].text.content).getTime()
     }));
   }
