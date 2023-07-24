@@ -104,7 +104,7 @@ module.exports = class NotionStore {
       title: subject.title,
       subtitle: subject.card_subtitle,
       intro: subject.intro,
-      cover_url: `https://dou.img.lithub.cc/${this.type}/${subject.id}.jpg`,
+      poster: `https://dou.img.lithub.cc/${this.type}/${subject.id}.jpg`,
       pubdate: subject.pubdate[0],
       url: subject.url,
       rating: subject?.rating?.value,
