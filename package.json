@@ -1,8 +1,8 @@
 {
   "name": "doumark",
   "private": true,
-  "version": "1.4.2",
-  "description": "豆瓣观影/阅读/音乐记录同步",
+  "version": "1.4.3",
+  "description": "豆瓣观影/阅读/音乐/游戏记录同步",
   "main": "src/index.js",
   "bin": "src/index.js",
   "scripts": {
