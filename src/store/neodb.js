@@ -85,7 +85,7 @@ module.exports = class NeoDBStore {
     }));
 
     resp.data.forEach(item => {
-      item.star_time = (new Date(item.cteated_time)).getTime();
+      item.star_time = (new Date(item.created_time)).getTime();
     });
 
     return resp.data;
