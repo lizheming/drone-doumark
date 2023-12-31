@@ -29,8 +29,8 @@ const FORMATS = {
     ]
   },
   rich_text(val) {
-    val_fitin = val.length <= 2000 ? val : val.substring(0, 2000);
-    return this.title(val_fitin);
+    const valFitin = val.length <= 2000 ? val : val.substring(0, 2000);
+    return this.title(valFitin);
   },
   number(val) {
     return Number(val);
